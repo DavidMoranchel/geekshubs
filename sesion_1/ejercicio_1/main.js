@@ -1,4 +1,4 @@
 $( window ).on( "load", function() {
-  console.log("documento listo WINDOW");
+  //Este elemento desaparece el div y hace una animación de desvanecido
   $('.cargando').fadeOut();
 });
