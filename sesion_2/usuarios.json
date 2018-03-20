@@ -1,0 +1,17 @@
+{
+  "0":{
+    "nombre":"Daniel",
+    "correo":"d@d.com",
+    "edad": "23"
+  },
+  "1":{
+    "nombre":"Ruben",
+    "correo":"r@r.com",
+    "edad": "34"
+  },
+  "2":{
+    "nombre":"Hector",
+    "correo":"h@h.com",
+    "edad": "18"
+  }
+}

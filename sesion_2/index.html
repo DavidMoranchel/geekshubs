@@ -7,13 +7,217 @@
   <title>Document</title>
   <style media="screen">
 
+    body, html{
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    table{
+      text-align: center;
+      width: 100%;
+      height: 100px;
+    }
+
   </style>
 </head>
 <body>
 
+  <!-- jerarquia -->
+
+
+  <!-- <ul>
+    <li class="elemento otro">
+      <span class="texto">
+        fhdjksfh
+      </span>
+      <span class="text">
+        <span class="fskjhfklds"></span>
+      </span>
+    </li>
+    <li class="elemento">li</li>
+    <li class="elemento">li</li>
+    <li class="elemento otro">li</li>
+    <li class="elemento otro">li</li>
+    <li class="elemento">li</li>
+  </ul> -->
+
+  <!-- <input type="text">
+  <input type="number"> -->
+
+  <!-- for each -->
+
+  <table id="table">
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Correo</th>
+    </tr>
+    <tr>
+      <td>David</td>
+      <td>david@codesign.mx</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <td>Raul</td>
+      <td>raul@canvas.mx</td>
+      <td>48</td>
+    </tr>
+  </table>
+
+
   <script src="jquery.min.js" charset="utf-8"></script>
   <script type="text/javascript">
-    
+
+    // selectores complejos -----------------------------
+
+    // $('ul').children('li');
+    // $('ul > li');
+    // $('ul').children('.element');
+    // $('ul > .otro');
+    // $('ul').children('li').children('span');
+    // $('ul > .otro > .texto');
+    // $("ul").find(".texto").css("color", "red");
+    // $('input[type="text"]');
+    // $('input[type="number"]');
+    // $('tr:even').css('background-color','#eaeaea');
+    // $('tr:odd').css('background-color','#eaeaea');
+
+
+    // for each -----------------------------
+
+    var objUsuarios = {
+      "0":{
+        "nombre":"Daniel",
+        "correo":"d@d.com",
+        "edad": "23"
+      },
+      "1":{
+        "nombre":"Ruben",
+        "correo":"r@r.com",
+        "edad": "34"
+      },
+      "2":{
+        "nombre":"Hector",
+        "correo":"h@h.com",
+        "edad": "18"
+      }
+    }
+
+
+    var createTr = function(key, value) {
+      console.log(key);
+      let tr = '<tr id="'+ key +'">';
+          tr += '<td>'+ value.nombre +'</td>';
+          tr += '<td>'+ value.correo +'</td>';
+          tr += '<td>'+ value.edad +'</td>';
+          tr += '</tr>';
+      $('#table').append(tr);
+    }
+
+    $.each( objUsuarios, function(key, value) {
+      createTr(key, value);
+    });
+
+    // ajax -------------------------------------------------
+
+    // var get = function() {
+    //   let xhttp = new XMLHttpRequest();
+    //   xhttp.onreadystatechange = function() {
+    //     console.log(this.readyState , 'estado', this.status, 'estatus');
+    //     if (this.readyState == 4 && this.status == 200) {
+    //       console.log(this.responseText);
+    //     }
+    //   }
+    //   // open(method, url, async)
+    //   xhttp.open('GET','usuarios.json',true);
+    //   // send(body)
+    //   xhttp.send();
+    // }
+
+    // var getLocal = function () {
+    //   $.ajax({
+    //     url: "usuarios.json",
+    //     type: "GET",
+    //     success: function(response){
+    //       console.log(response, 'respuestaServidor');
+    //     },
+    //     error: function (error) {
+    //       console.log(error, 'errorServidor');
+    //     }
+    //   });
+    // }
+
+
+
+
+
+    var getServer = function () {
+      $.ajax({
+        url: "https://geekshubs-b97d3.firebaseio.com/users.json",
+        type: "GET",
+        success: function(response){
+          console.log(response, 'respuestaServidor');
+        },
+        error: function (error) {
+          console.log(error, 'errorServidor');
+        }
+      });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var postServer = function (data) {
+      $.ajax({
+        url: "https://geekshubs-b97d3.firebaseio.com/users.json",
+        type: "POST",
+        data: JSON.stringify(data),
+        success: function(response){
+          console.log(response, 'respuestaServidor');
+        },
+        error: function (error) {
+          console.log(error, 'errorServidor');
+        }
+      });
+    }
+
+    var putServer = function (data,url) {
+      $.ajax({
+        url: "https://geekshubs-b97d3.firebaseio.com/users/"+url+".json",
+        type: "PUT",
+        data: JSON.stringify(data),
+        success: function(response){
+          console.log(response, 'respuestaServidor');
+        },
+        error: function (error) {
+          console.log(error, 'errorServidor');
+        }
+      });
+    }
+
+    var deleteServer = function (data,url) {
+      $.ajax({
+        url: "https://geekshubs-b97d3.firebaseio.com/users/"+url+".json",
+        type: "DELETE",
+        success: function(response){
+          console.log(response, 'respuestaServidor');
+        },
+        error: function (error) {
+          console.log(error, 'errorServidor');
+        }
+      });
+    }
+
   </script>
 </body>
 </html>
