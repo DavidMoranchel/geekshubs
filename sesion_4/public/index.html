@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Firebase</title>
+  </head>
+  <body>
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDc10nicFelzfQ7dGkBCAz3q1MjuPLsobk",
+        authDomain: "geekshubs-b97d3.firebaseapp.com",
+        databaseURL: "https://geekshubs-b97d3.firebaseio.com",
+        projectId: "geekshubs-b97d3",
+        storageBucket: "geekshubs-b97d3.appspot.com",
+        messagingSenderId: "541708750205"
+      };
+      firebase.initializeApp(config);
+
+      //instanciamos al servicio de base de datos
+      var database = firebase.database();
+
+      //Referencia alumnos
+      var alumnosRef = database.ref('alumnos');
+
+      // alumnosRef.push({
+      //   name: 'David',
+      //   school: 'UNAM'
+      // })
+
+      // alumnosRef.child('-L9DBqjbrSv5_yZCWrJu').update({
+      //   name: 'algo'
+      // });
+      //
+      // alumnosRef.child('-L9DBqjbrSv5_yZCWrJu').remove()
+
+      // alumnosRef.on('value', (snapshot) => {
+      //   console.log(snapshot.val(), 'value');
+      // });
+
+      alumnosRef.on('child_added', (snapshot) => {
+        console.log(snapshot.val().name, 'child_added', snapshot.key);
+        // successAdd(snapshot.val());
+      });
+
+      alumnosRef.on('child_changed', (snapshot) => {
+        console.log(snapshot.val(), 'child_changed');
+      });
+
+      alumnosRef.on('child_removed', (snapshot) => {
+        console.log(snapshot.val(), 'child_removed');
+      });
+
+      var successAdd = (obj) => {
+        console.log(obj,'desde obj')
+      }
+
+
+
+
+    </script>
+  </body>
+</html>
