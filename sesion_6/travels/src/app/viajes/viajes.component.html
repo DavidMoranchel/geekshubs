@@ -1,0 +1,22 @@
+
+<div class="card-columns mt-20">
+
+
+  <div *ngFor="let viaje of viajes"
+       [class.selected]="viaje === viajeSeleccionado"
+        class="card" style="width: 18rem;">
+    <img class="card-img-top" [src]="viaje.imagen" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ viaje.ciudad }}</h5>
+      <p class="card-text">{{ viaje.descripcion }}</p>
+      <a class="btn btn-primary" routerLink="/detail/{{viaje.id}}">Ver detalle</a>
+    </div>
+  </div>
+
+
+
+  <!-- <app-detalle-viaje [viaje]="viajeSeleccionado"></app-detalle-viaje> -->
+
+
+
+</div>

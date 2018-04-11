@@ -1,0 +1,13 @@
+<div *ngIf="viaje" class="detail">
+
+  <h2>{{ viaje.ciudad | uppercase }}</h2>
+  <div><span>Precio: $</span>{{viaje.precio}}</div>
+  <div>
+    <label>Ciudad:
+      <input [(ngModel)]="viaje.ciudad" placeholder="ciudad"/>
+    </label>
+  </div>
+
+  <button (click)="goBack()">go back</button>
+
+</div>
