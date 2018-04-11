@@ -27,10 +27,10 @@
       //Referencia alumnos
       var alumnosRef = database.ref('alumnos');
 
-      // alumnosRef.push({
-      //   name: 'David',
-      //   school: 'UNAM'
-      // })
+      alumnosRef.push({
+        name: 'David',
+        school: 'UNAM'
+      })
 
       // alumnosRef.child('-L9DBqjbrSv5_yZCWrJu').update({
       //   name: 'algo'
@@ -43,9 +43,22 @@
       // });
 
       alumnosRef.on('child_added', (snapshot) => {
-        console.log(snapshot.val().name, 'child_added', snapshot.key);
-        // successAdd(snapshot.val());
+        // console.log(snapshot.val().name, 'child_added', snapshot.key);
+        successAdd(snapshot.key, snapshot.val());
       });
+
+      var successAdd = (key, value) => {
+        let tr = '<tr id="'+ key +'">';
+            tr += '<td>'+ key +'</td>';
+            tr += '<td>'+ value.nombre +'</td>';
+            tr += '<td>'+ value.apellidos +'</td>';
+            tr += '<td>'+ value.edad +'</td>';
+            tr += '<td><i class="material-icons" onclick="edit(\''+ key +'\')">edit</i></td>';
+            tr += '<td><i class="material-icons" onclick="deleteAJAX(\''+ key +'\')">delete</i></td>';
+            tr += '</tr>';
+        $('table').append(tr);
+      }
+
 
       alumnosRef.on('child_changed', (snapshot) => {
         console.log(snapshot.val(), 'child_changed');
